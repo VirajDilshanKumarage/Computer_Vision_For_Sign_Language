@@ -7,6 +7,7 @@ import cv2
 import numpy as np
 from mediapipe.python.solutions import hands
 
+
 cap = cv2.VideoCapture(0)
 from cvzone.HandTrackingModule import HandDetector
 from cvzone.ClassificationModule import Classifier
