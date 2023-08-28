@@ -10,7 +10,7 @@ from cvzone.HandTrackingModule import HandDetector
 
 cap = cv2.VideoCapture(0)
 detector = HandDetector(maxHands=1)
-imgSize=400
+imgSize=300
 offset=20
 while True:
     success, img = cap.read()
@@ -30,7 +30,17 @@ while True:
             wCal= math.ceil(k*w)
             imgResize = cv2.resize(imgCrop,(wCal,imgSize))
             imgResizeShape=imgResize.shape
-            imgWhite[0:imgCropShape[0], 0:imgCropShape[1]] = imgCrop
+
+            wGap = math.ceil((imgSize-wCal)/2)
+            imgWhite[:, wGap:wCal+wGap] = imgResize
+        else:
+            k = imgSize / w
+            hCal = math.ceil(k * h)
+            imgResize = cv2.resize(imgCrop, (imgSize,hCal))
+            imgResizeShape = imgResize.shape
+
+            hGap = math.ceil((imgSize - hCal) / 2)
+            imgWhite[hGap:hCal + hGap,:] = imgResize
 
         cv2.imshow("imageCrop",imgCrop)
         cv2.imshow("ImageWhite", imgWhite)
