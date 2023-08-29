@@ -14,17 +14,17 @@ from cvzone.ClassificationModule import Classifier
 
 cap = cv2.VideoCapture(0)
 detector = HandDetector(maxHands=1)
-classifier = Classifier("Model/keras_model.h5", "Model/label.text")
+classifier = Classifier("Model/keras_model.h5", "Model/labels.txt")
 imgSize=300
 offset=20
 counter=0
 
 lables = ["A","B","C"]
 
-folder="Data/C"
+
 while True:
     success, img = cap.read()
-    hands, img = detector.findHands(img)
+    hands = detector.findHands(img, draw=False)
     if hands:
         hand = hands[0]
         x,y,w,h=hand['bbox']
