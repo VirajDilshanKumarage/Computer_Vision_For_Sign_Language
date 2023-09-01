@@ -15,7 +15,7 @@ imgSize=300
 offset=20
 counter=0
 
-folder="Data/B"
+folder="Data/D"
 while True:
     success, img = cap.read()
     hands, img = detector.findHands(img)
